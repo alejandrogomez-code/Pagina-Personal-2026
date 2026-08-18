@@ -16,6 +16,7 @@ export interface Project {
   status: ProjectStatus;
   priority: Priority;
   notes: string | null;
+  objectives_text: string | null;
   sort_order: number;
 }
 

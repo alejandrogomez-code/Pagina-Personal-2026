@@ -21,6 +21,8 @@ Storage) · Tailwind CSS · Recharts · Lucide. Deploy en Vercel.
   aportes/retiros/valuaciones, distribución (donut) y evolución mensual por snapshots.
 - **Proyectos (listo):** proyectos con fases, tareas, subtareas (% automático),
   dependencias con advertencia, y tres vistas: lista, Kanban (drag & drop) y calendario.
+  Cada proyecto y cada tarea admite notas de texto y adjuntos PDF; los proyectos
+  además tienen una sección de objetivos (texto general + metas marcables).
 - **Calendario global (listo):** unifica tareas, objetivos, cuotas de tarjeta,
   recordatorios y eventos en una vista mes o agenda, con filtros por tipo y alta
   de eventos/recordatorios manuales.
@@ -46,6 +48,7 @@ La `SERVICE_ROLE_KEY` solo se usa del lado servidor y nunca se expone al fronten
    - `supabase/migrations/002_seed_y_vistas.sql`
    - `supabase/migrations/003_funciones_economia.sql`
    - `supabase/migrations/004_funciones_patrimonio.sql`
+   - `supabase/migrations/005_objetivos_adjuntos_proyecto.sql`
 3. En **Authentication → Providers**, dejá habilitado Email. Para un único
    usuario, desactivá "Enable email confirmations" o confirmá el mail manualmente.
 4. Creá tu usuario en **Authentication → Users → Add user**.

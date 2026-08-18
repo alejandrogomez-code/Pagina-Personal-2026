@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Attachments } from "@/components/ui/attachments";
+import { EditableNote } from "@/components/ui/editable-note";
 import { Field, Input, Select } from "@/components/ui/form";
 import { Modal } from "@/components/ui/modal";
 import { createClient } from "@/lib/supabase/client";
@@ -286,6 +288,21 @@ export function TaskPanel({
               ))}
             </ul>
           )}
+        </div>
+
+        <div className="border-t border-border pt-4">
+          <EditableNote
+            table="tasks"
+            id={task.id}
+            column="notes"
+            initial={task.notes}
+            label="Notas"
+            placeholder="Detalles, links, contexto…"
+          />
+        </div>
+
+        <div className="border-t border-border pt-4">
+          <Attachments scope="task" id={task.id} />
         </div>
 
         <div className="flex justify-between border-t border-border pt-3">

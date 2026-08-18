@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Attachments } from "@/components/ui/attachments";
+import { EditableNote } from "@/components/ui/editable-note";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/cn";
 import { ArrowLeft, List, LayoutGrid, Calendar, Plus } from "lucide-react";
@@ -10,9 +12,11 @@ import { TaskPanel } from "./task-panel";
 import { KanbanView } from "./kanban-view";
 import { ListView } from "./list-view";
 import { CalendarView } from "./calendar-view";
+import { ProjectObjectives } from "./project-objectives";
 import type { Phase, Project, Task } from "./types";
 
 type View = "list" | "kanban" | "calendar";
+type Section = "resumen" | "tareas";
 
 export function ProjectDetail({
   project,
@@ -21,6 +25,7 @@ export function ProjectDetail({
   project: Project;
   onBack: () => void;
 }) {
+  const [section, setSection] = useState<Section>("resumen");
   const [view, setView] = useState<View>("kanban");
   const [tasks, setTasks] = useState<Task[]>([]);
   const [phases, setPhases] = useState<Phase[]>([]);
@@ -75,7 +80,7 @@ export function ProjectDetail({
         <ArrowLeft size={15} /> Volver a proyectos
       </button>
 
-      <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-medium">{project.name}</h1>
           {project.description && (
@@ -85,36 +90,76 @@ export function ProjectDetail({
           )}
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex rounded-lg border border-border p-0.5">
-            {views.map((v) => (
-              <button
-                key={v.id}
-                onClick={() => setView(v.id)}
-                className={cn(
-                  "grid h-7 w-7 place-items-center rounded",
-                  view === v.id ? "bg-accent text-accent-fg" : "text-fg-muted"
-                )}
-                aria-label={v.label}
-                title={v.label}
-              >
-                <v.icon size={15} />
-              </button>
-            ))}
-          </div>
-          <Button variant="primary" size="sm" onClick={() => setModal(true)}>
-            <Plus size={15} /> Tarea
-          </Button>
+          {section === "tareas" && (
+            <>
+              <div className="flex rounded-lg border border-border p-0.5">
+                {views.map((v) => (
+                  <button
+                    key={v.id}
+                    onClick={() => setView(v.id)}
+                    className={cn(
+                      "grid h-7 w-7 place-items-center rounded",
+                      view === v.id ? "bg-accent text-accent-fg" : "text-fg-muted"
+                    )}
+                    aria-label={v.label}
+                    title={v.label}
+                  >
+                    <v.icon size={15} />
+                  </button>
+                ))}
+              </div>
+              <Button variant="primary" size="sm" onClick={() => setModal(true)}>
+                <Plus size={15} /> Tarea
+              </Button>
+            </>
+          )}
         </div>
       </div>
 
-      {loading ? (
+      {/* Secciones */}
+      <div className="mb-4 flex gap-1 border-b border-border">
+        {(["resumen", "tareas"] as Section[]).map((s) => (
+          <button
+            key={s}
+            onClick={() => setSection(s)}
+            className={cn(
+              "-mb-px border-b-2 px-3 py-2 text-[13px] capitalize transition-colors",
+              section === s
+                ? "border-accent font-medium text-fg"
+                : "border-transparent text-fg-muted hover:text-fg"
+            )}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+
+      {section === "resumen" ? (
+        <div className="grid gap-4 lg:grid-cols-2">
+          <ProjectObjectives
+            projectId={project.id}
+            objectivesText={project.objectives_text}
+          />
+          <div className="space-y-4">
+            <div className="rounded-xl border border-border bg-surface p-[var(--card-p)]">
+              <EditableNote
+                table="projects"
+                id={project.id}
+                column="notes"
+                initial={project.notes}
+                label="Notas"
+                placeholder="Anotá cualquier cosa relevante del proyecto…"
+              />
+            </div>
+            <div className="rounded-xl border border-border bg-surface p-[var(--card-p)]">
+              <Attachments scope="project" id={project.id} />
+            </div>
+          </div>
+        </div>
+      ) : loading ? (
         <div className="h-64 animate-pulse rounded-xl border border-border bg-surface-2" />
       ) : view === "kanban" ? (
-        <KanbanView
-          tasks={tasks}
-          onOpen={setOpenTask}
-          onMove={updateStatus}
-        />
+        <KanbanView tasks={tasks} onOpen={setOpenTask} onMove={updateStatus} />
       ) : view === "list" ? (
         <ListView tasks={tasks} phases={phases} onOpen={setOpenTask} />
       ) : (
