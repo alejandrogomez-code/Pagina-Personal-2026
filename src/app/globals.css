@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   TEMA — mezcla Slate (grises fríos, acento azul acero) + Mono Ink (mono,
+   aire, hairline, corners chicos). Todos los colores en HSL sin el hsl().
+   ========================================================================== */
+
+:root {
+  /* Light — Mono Ink: blanco casi puro, tinte frío mínimo */
+  --bg: 220 20% 99%;
+  --surface: 0 0% 100%;
+  --surface-2: 220 20% 98%;
+  --border: 220 16% 92%;
+  --border-strong: 220 14% 85%;
+  --fg: 222 30% 12%;
+  --fg-muted: 220 10% 42%;
+  --fg-subtle: 220 8% 60%;
+
+  /* Acento por defecto: azul acero (Slate) */
+  --accent: 217 60% 55%;
+  --accent-fg: 0 0% 100%;
+  --accent-soft: 217 60% 96%;
+
+  --success: 158 64% 38%;
+  --warning: 38 78% 48%;
+  --danger: 0 68% 55%;
+
+  /* Densidad (se remapea con [data-density]) */
+  --row-py: 0.5rem;
+  --card-p: 1rem;
+  --gap: 0.75rem;
+}
+
+.dark {
+  /* Dark — Mono Ink: negro azabache con tinte frío, no gris plano */
+  --bg: 222 28% 7%;
+  --surface: 222 24% 9%;
+  --surface-2: 222 22% 11%;
+  --border: 222 16% 16%;
+  --border-strong: 222 14% 22%;
+  --fg: 220 20% 94%;
+  --fg-muted: 220 10% 62%;
+  --fg-subtle: 220 8% 46%;
+
+  --accent: 217 70% 62%;
+  --accent-fg: 222 40% 10%;
+  --accent-soft: 217 40% 16%;
+
+  --success: 158 54% 46%;
+  --warning: 38 80% 56%;
+  --danger: 0 64% 60%;
+}
+
+/* -------- Acentos seleccionables (data-accent en <html>) ------------------ */
+[data-accent="violet"] { --accent: 250 62% 60%; --accent-soft: 250 60% 96%; }
+.dark[data-accent="violet"] { --accent: 250 70% 68%; --accent-soft: 250 35% 18%; }
+
+[data-accent="teal"] { --accent: 175 58% 40%; --accent-soft: 175 50% 95%; }
+.dark[data-accent="teal"] { --accent: 175 60% 48%; --accent-soft: 175 35% 15%; }
+
+[data-accent="amber"] { --accent: 32 80% 50%; --accent-soft: 32 80% 95%; }
+.dark[data-accent="amber"] { --accent: 32 85% 58%; --accent-soft: 32 45% 16%; }
+
+[data-accent="coral"] { --accent: 12 72% 58%; --accent-soft: 12 70% 96%; }
+.dark[data-accent="coral"] { --accent: 12 78% 64%; --accent-soft: 12 45% 17%; }
+
+/* -------- Densidad -------------------------------------------------------- */
+[data-density="compact"]     { --row-py: 0.3rem;  --card-p: 0.75rem; --gap: 0.5rem; }
+[data-density="comfortable"] { --row-py: 0.75rem; --card-p: 1.35rem; --gap: 1rem; }
+
+/* -------- Tamaño de fuente ------------------------------------------------ */
+html { font-size: 16px; }
+html[data-font="small"]  { font-size: 15px; }
+html[data-font="large"]  { font-size: 17.5px; }
+
+/* -------- Base ------------------------------------------------------------ */
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { border-color: hsl(var(--border)); }
+
+html { font-family: var(--font-sans); }
+
+body {
+  background: hsl(var(--bg));
+  color: hsl(var(--fg));
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* scrollbar sutil */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border-strong));
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track { background: transparent; }
