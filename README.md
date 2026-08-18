@@ -19,7 +19,9 @@ Storage) · Tailwind CSS · Recharts · Lucide. Deploy en Vercel.
 - **Ahorro / Inversiones (listo):** objetivos de ahorro con vínculo opcional a
   objetivos del año (sincronización automática de avance), activos/patrimonio con
   aportes/retiros/valuaciones, distribución (donut) y evolución mensual por snapshots.
-- Pendientes: proyectos, calendario, integración y refinamiento.
+- **Proyectos (listo):** proyectos con fases, tareas, subtareas (% automático),
+  dependencias con advertencia, y tres vistas: lista, Kanban (drag & drop) y calendario.
+- Pendientes: calendario global, integración final y refinamiento.
 
 ## 1. Variables de entorno
 
