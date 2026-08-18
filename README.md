@@ -16,7 +16,10 @@ Storage) · Tailwind CSS · Recharts · Lucide. Deploy en Vercel.
   categoría, y tarjetas con compras en cuotas + total mensual manual.
 - **Objetivos (listo):** CRUD, tipos cuantitativo/cualitativo, registro de
   avances con historial, submetas, estados, vistas cards/lista y filtros.
-- Pendientes: ahorro/inversiones, proyectos, calendario, integración y refinamiento.
+- **Ahorro / Inversiones (listo):** objetivos de ahorro con vínculo opcional a
+  objetivos del año (sincronización automática de avance), activos/patrimonio con
+  aportes/retiros/valuaciones, distribución (donut) y evolución mensual por snapshots.
+- Pendientes: proyectos, calendario, integración y refinamiento.
 
 ## 1. Variables de entorno
 
@@ -37,6 +40,7 @@ La `SERVICE_ROLE_KEY` solo se usa del lado servidor y nunca se expone al fronten
    - `supabase/migrations/001_schema_inicial.sql`
    - `supabase/migrations/002_seed_y_vistas.sql`
    - `supabase/migrations/003_funciones_economia.sql`
+   - `supabase/migrations/004_funciones_patrimonio.sql`
 3. En **Authentication → Providers**, dejá habilitado Email. Para un único
    usuario, desactivá "Enable email confirmations" o confirmá el mail manualmente.
 4. Creá tu usuario en **Authentication → Users → Add user**.
