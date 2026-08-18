@@ -114,6 +114,26 @@ export default async function DashboardPage() {
             month: "long",
           }).format(hoy)}
         </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <a
+            href="/economia"
+            className="rounded-full border border-border px-3 py-1 text-[13px] text-fg-muted transition-colors hover:border-border-strong hover:text-fg"
+          >
+            + Movimiento
+          </a>
+          <a
+            href="/economia"
+            className="rounded-full border border-border px-3 py-1 text-[13px] text-fg-muted transition-colors hover:border-border-strong hover:text-fg"
+          >
+            + Tarjeta / cuota
+          </a>
+          <a
+            href="/objetivos"
+            className="rounded-full border border-border px-3 py-1 text-[13px] text-fg-muted transition-colors hover:border-border-strong hover:text-fg"
+          >
+            + Objetivo
+          </a>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

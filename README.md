@@ -11,8 +11,12 @@ Storage) · Tailwind CSS · Recharts · Lucide. Deploy en Vercel.
 - **Fase 1 (lista):** arquitectura, base de datos, auth, layout con sidebar,
   sistema de temas (claro/oscuro/automático, acento, densidad, tamaño de letra),
   dashboard conectado a Supabase.
-- Fases 2–9: objetivos, economía, tarjetas, ahorro/inversiones, proyectos,
-  integración y refinamiento.
+- **Economía (lista):** movimientos (ingresos/egresos con alta rápida), resumen
+  del período con arrastre automático del saldo, presupuesto vs real por
+  categoría, y tarjetas con compras en cuotas + total mensual manual.
+- **Objetivos (listo):** CRUD, tipos cuantitativo/cualitativo, registro de
+  avances con historial, submetas, estados, vistas cards/lista y filtros.
+- Pendientes: ahorro/inversiones, proyectos, calendario, integración y refinamiento.
 
 ## 1. Variables de entorno
 
@@ -32,6 +36,7 @@ La `SERVICE_ROLE_KEY` solo se usa del lado servidor y nunca se expone al fronten
 2. En **SQL Editor**, ejecutá en orden:
    - `supabase/migrations/001_schema_inicial.sql`
    - `supabase/migrations/002_seed_y_vistas.sql`
+   - `supabase/migrations/003_funciones_economia.sql`
 3. En **Authentication → Providers**, dejá habilitado Email. Para un único
    usuario, desactivá "Enable email confirmations" o confirmá el mail manualmente.
 4. Creá tu usuario en **Authentication → Users → Add user**.
