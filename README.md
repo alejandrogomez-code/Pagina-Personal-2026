@@ -21,7 +21,10 @@ Storage) · Tailwind CSS · Recharts · Lucide. Deploy en Vercel.
   aportes/retiros/valuaciones, distribución (donut) y evolución mensual por snapshots.
 - **Proyectos (listo):** proyectos con fases, tareas, subtareas (% automático),
   dependencias con advertencia, y tres vistas: lista, Kanban (drag & drop) y calendario.
-- Pendientes: calendario global, integración final y refinamiento.
+- **Calendario global (listo):** unifica tareas, objetivos, cuotas de tarjeta,
+  recordatorios y eventos en una vista mes o agenda, con filtros por tipo y alta
+  de eventos/recordatorios manuales.
+- Pendientes: búsqueda global (Ctrl+K), exportación y refinamiento final.
 
 ## 1. Variables de entorno
 
